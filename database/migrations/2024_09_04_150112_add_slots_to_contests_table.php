@@ -12,7 +12,7 @@ return new class extends Migration
     public function up()
     {
         Schema::table('contests', function (Blueprint $table) {
-            $table->integer('total_slots')->default(252); // Total slots available
+            $table->integer('total_slots')->default(150); // Total slots available
             $table->integer('occupied_slots')->default(0); // Slots currently occupied
         });
     }

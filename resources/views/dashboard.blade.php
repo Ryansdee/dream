@@ -39,7 +39,7 @@
                     @endphp
 
                     <div class="col-md-4">
-                        <div class="card">
+                        <div class="card shadow-sm" style="border-top-right-radius: 1.05rem; border-top-left-radius: 1.05rem;">
                             @if ($randomImage)
                                 <a href="{{ route('contests.show', $contest->id) }}">
                                     <img src="{{ asset('storage/' . $randomImage->image_path) }}" class="card-img-top bg-gray-800" alt="Image of {{ $contest->name }}" style="border-radius: 1rem">

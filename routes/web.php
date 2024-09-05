@@ -23,7 +23,10 @@ Route::post('/contests/{id}/create-checkout-session', [TestController::class, 'c
 Route::get('/contests/thank-you', [TestController::class, 'thankYou'])->name('contests.thankYou');
 Route::post('/contests/{id}/participate', [TestController::class, 'participate'])->name('contests.participate');
 Route::post('/webhook/stripe', [TestController::class, 'handleWebhook']);
-
+Route::get('/contests/dashboard',[TestController::class, 'dashboard'])->name('contests.dashboard');
+Route::get('/contests/{id}/edit', [TestController::class, 'edit'])->name('contests.edit');
+Route::put('/contests/{id}', [TestController::class, 'update'])->name('contests.update');
+Route::delete('/contests/{id}', [TestController::class, 'destroy'])->name('contests.destroy');
 // Route pour la page d'accueil
 Route::get('/', function () {
     return view('welcome');

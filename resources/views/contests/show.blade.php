@@ -19,9 +19,9 @@
     <script src="https://js.stripe.com/v3/"></script>
     <style>
         .carousel-item img {
-            object-fit: cover;
-            width: 400px;
-            height: 500px; /* Adjust height as needed */
+            object-fit: contain;
+            width: 200px;
+            height: 300px; /* Adjust height as needed */
         }
         .card {
             border: none;
@@ -54,7 +54,7 @@
 <body>
 <x-app-layout>
     <div class="container mt-4">
-        <div class="card mx-auto" style="max-width: 99%;">
+        <div class="card mx-auto shadow" style="max-width: 99%;">
             @if($contest->images->isNotEmpty())
                 <!-- Carousel -->
                 <div id="contestCarousel" class="carousel slide">
@@ -65,14 +65,6 @@
                             </div>
                         @endforeach
                     </div>
-                    <button class="carousel-control-prev" type="button" data-bs-target="#contestCarousel" data-bs-slide="prev">
-                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Previous</span>
-                    </button>
-                    <button class="carousel-control-next" type="button" data-bs-target="#contestCarousel" data-bs-slide="next">
-                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                        <span class="visually-hidden">Next</span>
-                    </button>
                 </div>
             @else
                 <p class="text-center mt-4">No images available for this contest.</p>

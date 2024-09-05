@@ -142,4 +142,48 @@ class TestController extends Controller
         return response()->json(['clientSecret' => $paymentIntent->client_secret]);
     }
 
+    public function edit($id)
+    {
+        if (Auth::check() && Auth::user()->email === 'desch.ryann@gmail.com') {
+            $contest = Contest::findOrFail($id);
+            return view('contests.edit', compact('contest'));
+        } else {
+            return redirect()->route('dashboard')->with('error', 'Unauthorized access.');
+        }
+    }
+    
+    // Méthode pour mettre à jour les informations du contest
+    public function update(Request $request, $id)
+    {
+        if (Auth::check() && Auth::user()->email === 'desch.ryann@gmail.com') {
+            $contest = Contest::findOrFail($id);
+    
+            // Validation des données de la requête
+            $request->validate([
+                'name' => 'required|string|max:255',
+                // Ajoutez d'autres règles de validation selon vos besoins
+            ]);
+    
+            // Mise à jour du contest
+            $contest->update($request->all());
+    
+            return redirect()->route('contests.show', $contest->id)->with('success', 'Contest updated successfully.');
+        } else {
+            return redirect()->route('dashboard')->with('error', 'Unauthorized access.');
+        }
+    }
+    
+    // Méthode pour supprimer un contest
+    public function destroy($id)
+    {
+        if (Auth::check() && Auth::user()->email === 'desch.ryann@gmail.com') {
+            $contest = Contest::findOrFail($id);
+            $contest->delete();
+    
+            return redirect()->route('dashboard')->with('success', 'Contest deleted successfully.');
+        } else {
+            return redirect()->route('dashboard')->with('error', 'Unauthorized access.');
+        }
+    }
+
 }
